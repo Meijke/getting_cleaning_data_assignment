@@ -47,10 +47,10 @@ total_data$activitylabel <- activity_labels$V2[match(total_data$activitylabel, a
 mean_std_cols <- grep("subject|activitylabel|mean|std", colnames(total_data), value = TRUE)
 
 ## Select these columns from total data set
-total_data <- total_data[ ,mean_std_cols]
+mean_data <- total_data[ ,mean_std_cols]
 
 # Take averages of each variabel for each activity and each subject in seperate data set
-averages <-  aggregate(total_data[,-c(1:2)], by = list(total_data$subject, total_data$activitylabel), FUN = mean)
+averages <-  aggregate(mean_data[,-c(1:2)], by = list(mean_data$subject, mean_data$activitylabel), FUN = mean)
 
 ## Use descriptive colnames
 colnames(averages)[1:2] <- c("subject", "activitylabel")
